@@ -1,0 +1,401 @@
+/*home.html*/
+.websiteTitle{
+	font-family: 'Permanent Marker';
+}
+#websiteTitle:hover{
+	color: yellow;
+}
+#navbar-button{
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+#navbar-button:hover{
+	-ms-transform: scale(1.1,1.1); /* IE 9 */
+    -webkit-transform: scale(1.1,1.1); /* Safari */
+    transform: scale(1.1,1.1); /* Standard syntax */
+}
+.jumbotronTitle_top{
+	font-size: 5em;
+	font-family: 'Permanent Marker';
+	font-style: italic;
+	padding-top: 13rem;
+}
+.jumbotronSlogin_top{
+	font-size: 2em;
+	font-family: 'Permanent Marker';
+}
+.jumbotronTitle_bottom{
+	font-size: 5rem;
+	font-family: ;
+	padding-top: 4rem;
+}
+.jumbotronSlogin_bottom{
+	font-size: 1.2rem;
+	font-family: ;
+}
+.jumbotron_bottom{
+    background: url("jumbo.png") no-repeat center center;
+    background-size: cover;
+    color: white;
+	height: 650px;
+	text-align: center;
+	vertical-align: center;
+	text-shadow: black 0.2em 0.2em 0.3em;
+}
+.jumbotron_top{
+	background: url("jumbotron.png") no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+	height: 700px;
+	text-align: center;
+	vertical-align: center;
+
+}
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
+.rounded-buttons{
+	border-radius: 50%;
+}
+#bulb{
+	width: 5.6rem;
+	height: 5.6rem;
+}
+#card_title{
+	font-size: 2.1rem;
+	font-family: 'Righteous';
+}
+#card_subtitle{
+	font-size: 1.1rem;
+	font-family: 'Shadows Into Light';
+}
+#card_text{
+	font-size: 1.1rem;
+	font-family: 'Cairo';
+}
+#card_button{
+	font-size: 1.1rem;
+	font-family: 'McLaren';
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+#card_button:hover{
+	-ms-transform: scale(1.2,1.2); /* IE 9 */
+    -webkit-transform: scale(1.2,1.2); /* Safari */
+    transform: scale(1.2,1.2); /* Standard syntax */
+}
+.card-button{
+	font-size: 1.1rem;
+	font-family: 'McLaren';
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+.card-button:hover{
+	-ms-transform: scale(1.2,1.2); /* IE 9 */
+    -webkit-transform: scale(1.2,1.2); /* Safari */
+    transform: scale(1.2,1.2); /* Standard syntax */
+}
+.subcard_bg{
+	background: url("subcard_bg.png") no-repeat center center;
+	background-size: cover;
+}
+.subcard_borderimg{
+	border-image-slice: 45% 45% 45% 45%; 
+	border-image-width: 1rem 1rem 1rem 1rem; 
+	border-image-outset: 0 0 1rem 0; 
+	border-image-repeat: stretch stretch; 
+	border-image-source: url("https://mdn.mozillademos.org/files/6007/border-image-1.png");
+}
+.subcard_outline{
+	outline: 0.5rem solid orange; 
+}
+#subcard_title{
+	font-size: 2.6rem;
+	font-family: 'Mouse Memoirs';
+}
+#subcard_text{
+	font-family: 'Dekko';
+	font-size: 1.1rem;
+}
+.subcard_footer{
+	margin-bottom: 0.5rem;
+}
+#subcard_button{
+	width: 75%;
+	font-family: 'McLaren';
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+#subcard_button:hover{
+	-ms-transform: scale(1.2,1.2); /* IE 9 */
+    -webkit-transform: scale(1.2,1.2); /* Safari */
+    transform: scale(1.2,1.2); /* Standard syntax */
+}
+#subcard_button_text_size{
+	font-size: 1rem;
+}
+footer div a{
+	font-size: 1.1rem;
+}
+
+/*about.html*/
+.block{
+	position: relative;
+	text-align: center;
+	height: 20rem; 
+	color: white;
+	text-shadow: black 0.2em 0.2em 1em;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.block:hover{
+	background-color: rgba(0,0,0,0.5);
+	cursor: pointer;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.bg-img{
+	width:100%;
+	height: 100%;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+		transition: all 1s ease;
+}	
+img:hover, .block:hover img{
+	opacity: 0.3;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.caption{
+	
+}
+.caption-header{
+	position: absolute;
+	color: white;
+	top: 11%;
+    left: 50%;
+    transform: translate(-50%, 0);
+	font-size: 2.5rem;
+	font-family: 'Jua';
+	z-index:0;
+}
+.caption-text{
+	font-size: 1.5rem;
+	position: absolute;
+	color: white;
+	top: 38%;
+    left: 0%;
+	font-family: 'Fjalla One';
+	z-index: 0;
+}
+.div-link{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1;
+}
+
+/*announcement.html*/
+.static{
+	overflow: hidden;
+}
+#list-tab{
+	font-size: 1.3rem;
+}
+.heading{
+	font-size: 4rem;
+}
+.content-section{
+	overflow-y:auto;
+	overflow-x:hidden;
+	width: 100%;
+	height: 40rem;
+}
+.static{
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+/* contact.html */
+#contatti{
+  background-color: #606060;
+  letter-spacing: 2px;
+  }
+#contatti a{
+  color: #fff;
+  text-decoration: none;
+}
+
+
+@media (max-width: 575.98px) {
+
+  #contatti{padding-bottom: 800px;}
+  #contatti .maps iframe{
+    width: 100%;
+    height: 450px;
+  }
+ }
+
+
+@media (min-width: 576px) {
+
+   #contatti{padding-bottom: 800px;}
+
+   #contatti .maps iframe{
+     width: 100%;
+     height: 450px;
+   }
+ }
+
+@media (min-width: 768px) {
+
+  #contatti{padding-bottom: 350px;}
+
+  #contatti .maps iframe{
+    width: 100%;
+    height: 850px;
+  }
+}
+
+@media (min-width: 992px) {
+  #contatti{padding-bottom: 200px;}
+
+   #contatti .maps iframe{
+     width: 100%;
+     height: 700px;
+   }
+}
+
+
+#author a{
+  color: #fff;
+  text-decoration: none;
+    
+}
+/* login.html */
+.jumbotron-login{
+    background-size: cover;
+    background-color: #001933;
+}
+.login-form{
+	width: 30%;
+}
+.login-form-label{
+	font-family: 'Roboto Slab';
+}
+.divider{
+	display: block;
+	border-width: 1px;
+	border-style: inset;
+	border-color: #E0E0E0;
+}
+.login-user-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+	width: 8rem;
+	height: 8rem;
+}
+.jumbotron-register{
+    background-size: cover;
+    background-color: #001933;
+}
+.register-form{
+	width: 30%;
+}
+.register-user-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+	width: 8rem;
+	height: 8rem;
+}
+#err-msg{
+	display: none;
+	color:red;
+	font-size: 1.2rem;
+}
+#greet-user{
+	display: none;
+}
+.msg{
+	font-size: 1.5rem;
+	font-family: 'Roboto Slab';
+}
+#username{
+	font-family: 'Permanent Marker';
+}
+.btn-getbook{
+	font-size: 1.1rem;
+	font-family: 'McLaren';
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+.btn-getbook:hover{
+	-ms-transform: scale(1.2,1.2); /* IE 9 */
+    -webkit-transform: scale(1.2,1.2); /* Safari */
+    transform: scale(1.2,1.2); /* Standard syntax */
+}
+.btn-logout{
+	font-size: 1.1rem;
+	font-family: 'McLaren';
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+.btn-logout:hover{
+	-ms-transform: scale(1.2,1.2); /* IE 9 */
+    -webkit-transform: scale(1.2,1.2); /* Safari */
+    transform: scale(1.2,1.2); /* Standard syntax */
+}
+/* confirm.html */
+.shopping-cart{
+	font-size: 1.3rem;
+    color: white;
+}
+#order{
+	font-size: 1.3rem;
+}
+.confirm{
+	width: 50%;
+}
+.total{
+	color: #00FF00;
+	font-weight: bold;
+}
+#cancel{
+	font-size: 1.3rem;
+}
+.pickup{
+	font-size: 1.7rem;
+	color: green;
+}
+/* final.html */
+.msg{
+	font-size: 1.3rem;
+	color: 	red;
+}
+/* enquiry */

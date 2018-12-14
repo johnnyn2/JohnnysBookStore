@@ -1,0 +1,376 @@
+/*
+    DEMO STYLE
+*/
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Permanent+Marker";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+#top-navbar a:focus{
+	font-weight: bold;
+}
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+}
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #3E4551;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+    transform: rotateY(100deg);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #202020;
+	font-family: 'Permanent Marker';
+}
+
+#sidebar ul.components {
+    padding: 0 0;
+	border-top: 1px solid #47748b;
+	border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar>ul>li>a:hover {
+    color: #fff;
+    background: #C0C0C0;
+}
+#sidebar>ul>li>ul>li>a:hover {
+    color: #fff;
+    background: #C0C0C0;
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #212121;
+    background: #fff;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #606060;
+	color: #fff;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay: 0.2s;
+}
+
+#sidebarCollapse span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+#sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+}
+
+.my_button{
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+.my_button:hover{
+	-ms-transform: scale(1.1,1.1); /* IE 9 */
+    -webkit-transform: scale(1.1,1.1); /* Safari */
+    transform: scale(1.1,1.1); /* Standard syntax */
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 900px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+
+/* ordering.html */
+.card-shadow{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-button{
+	-ms-transform: -ms-transform 0.5s;
+	-webkit-transition: -webkit-transform 0.5s;;
+	transition: transform 0.5s;
+}
+.card-button:hover{
+	-ms-transform: scale(1.1,1.1); /* IE 9 */
+    -webkit-transform: scale(1.1,1.1); /* Safari */
+    transform: scale(1.1,1.1); /* Standard syntax */
+}
+.card-button:active{
+	-ms-transform: scale(0.9,0.9); /* IE 9 */
+    -webkit-transform: scale(0.9,0.9); /* Safari */
+    transform: scale(0.9,0.9); /* Standard syntax */
+}
+#btn-viewCart{
+	
+}
+.card-img{
+	height: 250px;
+	width: 150px;
+}
+.book-border{
+	border-style: solid;
+	border-width: 5px;
+}
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+#shopping-cart{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+	z-index: 3;
+	display: none;
+}
+/*
+Force table width to 100%
+*/
+ table.table-fixedheader {
+    width: 100%;   
+}
+
+/*
+Set table elements to block mode.  (Normally they are inline).
+This allows a responsive table, such as one where columns can be stacked
+if the display is narrow.
+*/
+ table.table-fixedheader, table.table-fixedheader>thead, table.table-fixedheader>tbody, table.table-fixedheader>thead>tr, table.table-fixedheader>tbody>tr, table.table-fixedheader>thead>tr>th, table.table-fixedheader>tbody>td {
+    display: block;
+}
+table.table-fixedheader>thead>tr:after, table.table-fixedheader>tbody>tr:after {
+    content:' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+/*
+When scrolling the table, actually it is only the tbody portion of the
+table that scrolls (not the entire table: we want the thead to remain
+fixed).  We must specify an explicit height for the tbody.  We include
+100px as a default, but it can be overridden elsewhere.
+
+Also, we force the scrollbar to always be displayed so that the usable
+width for the table contents doesn't change (such as becoming narrower
+when a scrollbar is visible and wider when it is not).
+*/
+ table.table-fixedheader>tbody {
+    overflow-y: scroll;
+    height: 300px;
+    
+}
+/*
+We really don't want to scroll the thead contents, but we want to force
+a scrollbar to be displayed anyway so that the usable width of the thead
+will exactly match the tbody.
+*/
+ table.table-fixedheader>thead {
+    overflow-y: scroll;    
+}
+/*
+For browsers that support it (webkit), we set the background color of
+the unneeded scrollbar in the thead to make it invisible.  (Setting
+visiblity: hidden defeats the purpose, as this alters the usable width
+of the thead.)
+*/
+ table.table-fixedheader>thead::-webkit-scrollbar {
+    background-color: inherit;
+}
+
+
+table.table-fixedheader>thead>tr>th:after, table.table-fixedheader>tbody>tr>td:after {
+    content:' ';
+    display: table-cell;
+    visibility: hidden;
+    clear: both;
+}
+
+/*
+We want to set <th> and <td> elements to float left.
+We also must explicitly set the width for each column (both for the <th>
+and the <td>).  We set to 20% here a default placeholder, but it can be
+overridden elsewhere.
+*/
+
+ table.table-fixedheader>thead tr th, table.table-fixedheader>tbody tr td {
+    float: left;    
+    word-wrap:break-word;     
+}
+
+
+
+.price{
+	font-size: 1.2rem;
+	color: #d9534f;
+	font-weight: bold;
+}
+.btn-remove, .btn-confirm{
+	border-radius: 50%;
+}
+th.text-center{
+	border: none;
+}
+.total{
+	color: #00FF00;
+	font-weight: bold;
+}
+

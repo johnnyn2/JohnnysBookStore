@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta name="keywords" content="HTML,CSS,XML, JSON,JavaScript,PHP">
+<meta name="author" content="Johnny Ho">
+<meta name="viewport" content="width=device-width, initial-scale="1.0">
+<title>Johnny's BookStore</title>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Mouse+Memoirs' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=McLaren' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script src="jquery-3.3.1.js"></script>
+<script type='text/javascript' src='js/modernizr.js'></script>
+<script type='text/javascript' src='js/dynamicpage.js'></script>
+<script Language="JavaScript">
+
+</script>
+</head>
+<body>
+
+<div id="page-wrap">
+	<header class="sticky-top">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand websiteTitle" id="websiteTitle" href="index.html">Johnny's BookStore</a>
+						
+			
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html"><span class="fas fa-comment"></span> About</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="fab fa-servicestack"></span> Services
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="enquiry.html"><span class="fas fa-question"></span> Enquiry</a>
+							<a class="dropdown-item" href="ordering.html"><span class="fas fa-shopping-cart"></span> Ordering</a>
+
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contact.html"><span class="fas fa-phone"></span> Contact Us</a>
+					</li>
+				</ul>
+			</div>
+			<div class="btn-group" role="group" aria-label="register or login">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<a href="register.html" id="navbar-button" class="btn btn-primary mx-2"><span class="fas fa-id-card"></span> Register</a>
+				<a href="login.html" id="navbar-button" class="btn btn-success"><span class="fas fa-user"></span> Login</a>
+			</div>
+		</nav>
+	</header>
+	
+	<section id="main-content" class="mb-5">
+		<div id="guts">
+			<div class="jumbotron_top d-none d-sm-block" src="jumbo.png">
+				<h1 class="jumbotronTitle_top">Johnny's BookStore</h1>
+				<p class="jumbotronSlogin_top">We have all the books you want</p>
+			</div>
+		
+			
+			
+			<div class="card container border-white my-5">
+				<div class="card-body">
+					<h5 class="card-title" id="card_title">Our Idea<img src="img/bulb.png" id="bulb"></img></h5>
+					<h6 class="card-subtitle mt-0 mb-3 text-muted" id="card_subtitle">Why we read?</h6>
+					<p class="card-text mt-3" id="card_text">
+					What makes reading so alluring? We believes the answer is our soul. That’s why we have made our entire focus on you. Your style, 
+					your ideas, your interest. Go on – pick up any book you love and read now!
+					</p>
+					<a href="about.html" id="card_button" class="card-link btn btn-success mt-3">About Us</a>
+				</div>
+			</div>									
+		
+			
+			<div class="card container border-white my-5">		
+				<div class="card-body">
+					<h5 class="card-title" id="card_title">Our Services<img src="img/bulb.png" id="bulb"></img></h5>
+					<h6 class="card-subtitle mt-0 mb-3 text-muted" id="card_subtitle">What can we offer?</h6>
+					<p class="card-text mt-3" id="card_text">
+					We can offer you an immediate and easy peasy way to search and order any books that we have. Just a few steps, you'll be able to 
+					access the books you like and bring them to your home! 
+					</p>
+					<div class="card-deck d-sm-block d-md-block d-lg-flex">
+				
+						<div class="card text-center subcard_borderimg">
+							<div class="card-body">
+								<h1 class="card-title" id="subcard_title">Enquiry</h1>
+								<p class="card-text" id="subcard_text">
+								We have numerous novel books from all around the world, such as Japan, America, British, China, France, Italy, Egypt and more! Let's check them out! </p>
+								
+							</div>
+							<div class="subcard_footer">
+								<a href="enquiry.html" id="subcard_button" class="card-link btn btn-success"><span id="subcard_button_text_size">Looking for a book</span> <span id="subcard_button_text_size" class="fas fa-question"></span></a>
+							</div>
+						</div>
+					
+						<div class="card text-center subcard_borderimg">
+							<div class="card-body">
+								<h1 class="card-title" id="subcard_title">Register</h1>
+								<p class="card-text" id="subcard_text">
+								Do you want to cleanse your soul by reading? Let's register an account and order books from us! It only takes you a few 
+								seconds! </p>
+								
+							</div>
+							<div class="subcard_footer">
+								<a href="register.html" id="subcard_button" class="card-link btn btn-success"><span id="subcard_button_text_size">Join as a member</span> <span id="subcard_button_text_size" class="fas fa-id-card"></span></a>
+							</div>
+						</div>
+						
+						<div class="card text-center subcard_borderimg">
+							<div class="card-body">
+								<h1 class="card-title" id="subcard_title">Ordering</h1>
+								<p class="card-text" id="subcard_text">
+								Order for the latest released books, 90% discount will be offered! Discount offer will be revoked soon! Don't hesitate. 
+								Order any books you want! </p>
+							</div>
+							<div class="subcard_footer">
+								<a href="ordering.html" id="subcard_button" class="card-link btn btn-success"><span id="subcard_button_text_size">Get a book from us</span> <span id="subcard_button_text_size" class="fas fa-shopping-cart"></span></a>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>	
+			
+			<div class="card container border-white my-5">
+				<div class="card-body">
+					<h5 class="card-title" id="card_title">Our Contact<img src="img/bulb.png" id="bulb"></img></h5>
+					<h6 class="card-subtitle mt-0 mb-3 text-muted" id="card_subtitle">Do you have any questions?</h6>
+					<p class="card-text mt-3" id="card_text">
+					I love you, won’t you tell me your name? These immortal words by legendary musician Jim Morrison are still as relevant today, 
+					in this digital age, as they were back then. If you have any ideas or questions, please feel free to leave your comments. We will 
+					reply as soon as possible!
+					</p>
+					<a href="contact.html" id="card_button" class="card-link btn btn-success mt-3">Let's Meet</a>
+				</div>
+			</div>
+			
+			
+		</div>
+	</section>
+	
+	<footer>
+		<div>
+			<div class="jumbotron_bottom d-none d-sm-block">
+				<h1 class="jumbotronTitle_bottom">Reading, made simple.</h1>
+				<p class="jumbotronSlogin_bottom">Everyone can read, but not everyone is a reader.</p>
+				<p class="jumbotronSlogin_bottom">What makes the difference is the keen eye for detail
+				and beauty.</p>
+			</div>
+			
+		</div>
+		<div class="bg-dark d-flex justify-content-center">
+			<a href="index.html" class="my-3 mx-3 text-light d-none d-md-inline">Home</a>
+			<a href="about.html" class="my-3 mx-3 text-light d-none d-md-inline">About</a>
+			<a href="enquiry.html" class="my-3 mx-3 text-light d-none d-md-inline">Enquiry</a>
+			<a href="ordering.html" class="my-3 mx-3 text-light d-none d-md-inline">Ordering</a>
+			<a href="register.html" class="my-3 mx-3 text-light d-none d-md-inline">Register</a>
+			<a href="login.html" class="my-3 mx-3 text-light d-none d-md-inline">Login</a>
+			<a href="contact.html" class="my-3 mx-3 text-light d-none d-md-inline">Contact</a>
+		</div>	
+		<div class="bg-dark d-flex justify-content-center">	
+			<a href="#" class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-facebook-square"></span></a>
+			<a href="#" class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-instagram"></span></a>
+			<a href="#" class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-whatsapp"></span></a>
+		</div>
+		<div  class="bg-dark d-flex justify-content-center">
+				
+		</div>
+	</footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

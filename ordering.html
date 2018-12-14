@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta name="keywords" content="HTML,CSS,XML, JSON,JavaScript,PHP">
+<meta name="author" content="Johnny Ho">
+<meta name="viewport" content="width=device-width, initial-scale="1.0">
+<title>SamSam BookStore</title>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link href='https://fonts.googleapis.com/css?family=Permanent+Marker&effect=shadow-multiple' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/style5.css">
+
+<script src="jquery-3.3.1.js"></script>
+<script Language="JavaScript">
+function Product(isbn, bname, quantity, price){
+	this.isbn = isbn;
+	this.bname = bname;
+	this.quantity = quantity;
+	this.price = price;
+}
+function MyProduct(id,desiredQuantity){
+	this.id = id;
+	this.desiredQuantity = desiredQuantity;
+}
+var myProducts = [];
+var allProducts = [];
+var previousDeleted = 0;
+var deleteItems = 0;
+var total = 0;
+$(document).ready(function () {
+	$.ajax({
+		url: "php/loadProducts.php",
+		success: function(data){
+					var i = 0;
+					$.each(data,function(key,val){
+						
+						allProducts[i] = new Product(val.isbn, val.bname, val.quantity, val.price);		
+						i++;		
+					});
+				}
+	});
+	
+	$('#confirm').click(function(event){
+		var isLoggedIn = true;
+		if(total==0){
+			alert("Lets add a book to shopping cart!");
+			event.preventDefault();
+			return;
+		}
+		$.ajax({
+			url: "php/checkLogin.php",
+			success: function(data){
+						if(data.status == "notLoggedIn"){
+							event.preventDefault();
+							location.replace("login.html");
+						}
+					}
+		});
+		$.ajax({
+			type: 'POST',
+			url: 'php/setSESSION.php',
+			data: { tmp_myProducts:myProducts, tmp_total:total}
+		});
+	});
+	
+	$('#sidebarCollapse').on('click', function () {
+		$('#sidebar').toggleClass('active');
+		$(this).toggleClass('active');
+	});
+		
+	$('#content nav div div ul li').click(function(){
+				
+		var index = $('#content nav div div ul li').index(this);
+		if(index!=0){
+			$('#link-news').css("font-weight", "normal");
+			$('#link-news').removeClass('active');
+		}
+		else{
+			$('#link-news').css("font-weight", "bold");
+			$('#link-news').addClass('active');
+		}
+		$(this).addClass('active');
+		$('#content>div:visible').hide(1000);
+		$('.product-page:eq('+index+')').show(1000);
+			
+	});
+			
+	$('#btn-viewCart').click(function(event){
+		$('#overlay').fadeIn(500);
+		$('#shopping-cart').fadeIn(500);
+	});
+	$('#overlay').click(function(){
+		$(this).fadeOut(500);
+		$('#shopping-cart').fadeOut(500);
+	});
+	
+	
+});
+function showCart(k){
+	var html = "", newProduct = myProducts.length-1;
+	html += '<tr id="cartRow'+newProduct+'"><td>'+myProducts.length+'</td><td>'+allProducts[myProducts[newProduct].id].bname+'</td><td>'+
+			allProducts[myProducts[newProduct].id].price+'</td><td><input type="number" id="'+newProduct+'" min="1" max="20" value="'+myProducts[newProduct].desiredQuantity+'" onclick="adjustTotal(this)"></td><td><button id="'+allProducts[myProducts[newProduct].id].isbn+'" class="btn btn-danger btn-remove" onclick="removeProduct(this)"><i class="fas fa-times"></i></button></td></tr>';
+	$('#cartRow'+(newProduct-1)).after(html);
+}
+function adjustTotal(item){
+	myProducts[$(item).attr("id")].desiredQuantity = $(item).val();
+	showTotal();
+}
+function showTotal(){
+	var tmp_total =0;
+	for(var i=0;i<myProducts.length;i++){
+		tmp_total = tmp_total + allProducts[myProducts[i].id].price * myProducts[i].desiredQuantity;
+	}
+	total = tmp_total;
+	$('#total').html("$"+total);
+}
+function removeProduct(item){
+	var i=0;
+	for(;i<allProducts.length;i++){
+		if($(item).attr('id')==allProducts[i].isbn){
+			break;
+		}
+	}
+	var j=0;
+	for(;j<myProducts.length;j++){
+		if(myProducts[j].id==i){
+			myProducts.splice(j,1);
+			break;
+		}
+	}
+	$('#cartRow'+j).remove();
+	for(var k=j+1;k<=myProducts.length;k++){
+		$('#cartRow'+k).attr('id',"cartRow"+(k-1));
+	}
+	showTotal();
+}
+function addToCart(item){
+	var wasAdded = false;
+	if($('#quantity'+$(item).attr('id')).val()!=""){
+		for(var i=0;i<myProducts.length;i++)
+			if(myProducts[i].id==$(item).attr('id')){
+				wasAdded = true;
+				break;
+			}
+		if(!wasAdded){
+			myProducts.push(new MyProduct($(item).attr('id'),1));
+			showCart($(this).attr('id'));
+			showTotal();
+		}
+	}
+}		
+</script>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Johnny's BookStore</h3>
+            </div>
+			<h4 class="text-center py-3">Ordering</h4>
+            <ul class="list-unstyled components">
+				
+				<li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <a href="#aboutSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">About</a>
+                    <ul class="collapse list-unstyled" id="aboutSubmenu">
+                        <li>
+                            <a href="announcement.html" class="active">Announcement</a>
+                        </li>
+                        <li>
+                            <a href="business.html">Business</a>
+                        </li>
+                        <li>
+                            <a href="aspiration.html">Aspiration</a>
+                        </li>
+						<li>
+                            <a href="publish.html">Publish</a>
+                        </li>
+                    </ul>
+                </li>
+				<li>
+                    <a href="#servicesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Services</a>
+                    <ul class="collapse list-unstyled" id="servicesSubmenu">
+                        <li>
+                            <a href="enquiry.html">Enquiry</a>
+                        </li>
+                        <li>
+                            <a href="ordering.html">Ordering</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="contact.html">Contact Us</a>
+				</li>
+            </ul>
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <div><a href="register.html" class="btn btn-primary my_button"><span class="fas fa-id-card"></span> Register</a></div>
+                </li>
+                <li>
+                    <div><a href="login.html" class="btn btn-success my_button"><span class="fas fa-user"></span> Login</a></div>
+                </li>
+				<li>
+                    <div><a id="btn-viewCart" class="btn btn-danger my_button"><span class="fas fa-cart-plus"></span> View My Cart</a></div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+					
+					
+					
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul id="top-navbar" class="nav navbar-nav ml-auto mt-1">
+                            <li class="nav-item active">
+                                <a class="nav-link" id="link-news" style="font-weight: bold;" href="#">All Categories</a>
+                            </li>
+							
+                            <li class="nav-item">
+                                <a class="nav-link" id="link-events" href="#">Books</a>
+                            </li>
+							
+                            <li class="nav-item">
+                                <a class="nav-link" id="link-recmds" href="#">Recordings</a>
+                            </li>
+							
+                            <li class="nav-item">
+                                <a class="nav-link"  id="link-bs" href="#">Compact Disc</a>
+                            </li>
+							
+							<li class="nav-item">
+                                <a class="nav-link" id="link-recruit" href="#">Video Material</a>
+                            </li>
+							<li class="nav-item">
+                                <a class="nav-link" id="link-recruit" href="#">Publications</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+			
+			<div class="product-page">
+				<div class="card-deck py-2">
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-1.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 id="tit" class="card-title">Dog Man: Lord of the Fleas: From the Creator of Captain</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $500</p>
+						<button class="btn btn-success card-button" id="0" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-2.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">The Official SAT Study Guide, 2018 Edition</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $325</p>
+						<button class="btn btn-success card-button" id="1" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-3.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Educated: A Memoir</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $474</p>
+						<button class="btn btn-success card-button" id="2" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+					
+				</div>
+				<div class="card-deck py-2">
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-4.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Rich People Problems: A Novel</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $274</p>
+						<button class="btn btn-success card-button mb-2" id="3" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-5.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Liars, Leakers and Liberals</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $1000</p>
+						<button class="btn btn-success card-button" id="4" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-6.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">You are a Badass</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $153</p>
+						<button class="btn btn-success card-button" id="5" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  
+				   
+				</div>
+				<div class="card-deck py-2">
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-7.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Girls, Wash Your Face</h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $532</p>
+						<button class="btn btn-success card-button" id="6" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				   <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-8.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">House of Trump, House of Putin: The Untold Story of </h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $223</p>
+						<button class="btn btn-success card-button" id="7" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-9.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">The Plant Paradox Cookbook: 100 Simple and Delicious </h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $50</p>
+						<button class="btn btn-success card-button" id="8" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				 
+				 
+					
+				</div>
+				<div class="card-deck py-2">
+				   <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-10.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Great Gatsby, the; (Us Import Ed.) </h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $67</p>
+						<button class="btn btn-success card-button" id="9" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				   <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-11.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">The Restless Wave: Good Times, Just Causes, Great </h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $600</p>
+						<button class="btn btn-success card-button" id="10" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				  <div class="card card-shadow">
+					<img class="card-img-top card-img mx-auto book-border" src="img/book-12.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">The Plant Paradox: The Hidden Dangers in "Healthy" Foods </h5><span class="badge badge-danger">Hot</span>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<p class="price">Price: $700</p>
+						<button class="btn btn-success card-button" id="11" onclick="addToCart(this)"><span>Add to cart</span><span class="fas fa-cart-plus"></span></button>
+					</div>
+				  </div>
+				 
+				</div>
+			</div>
+        </div>
+    </div>
+	<div id="overlay">
+	  
+	</div>
+	<div id="shopping-cart">
+		<table class="table table-hover table-dark" style="border-radius: 20px;">
+		
+				<tr class="bg-danger">
+					<th colspan="5" class="text-center py-2"><h1><span class="fas fa-cart-plus"></span></h1></th>
+				</tr>
+				<tr id="cartRow-1">
+					<th scope="col">#</th>
+					<th scope="col">Title</th>
+					<th scope="col">Price($)</th>
+					<th scope="col">Quantity</th>
+					<th scope="col"></th>
+				</tr>
+		
+			<!--	<tr>
+					<th scope="row">1</th>
+					<td>Computer Networks</td>
+					<td>500</td>
+					<td><input type="number" value="1" min="1" max="10"></td>
+					<td><button class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Computer Networks</td>
+					<td>500</td>
+					<td><input type="number" value="1" min="1" max="10"></td>
+					<td><button class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td>Computer Networks</td>
+					<td>500</td>
+					<td><input type="number" value="1" min="1" max="10"></td>
+					<td><button class="btn btn-danger btn-remove"><i class="fas fa-times"></i></button></td>
+				</tr>-->
+				<tr>
+					<th scope="row" class="text-right pt-3" colspan="3">Total: </th>
+					<td id="total" class="total text-center pt-3">$0.0</td>
+					<td><a id="confirm" href="confirm.html" class="btn btn-success btn-confirm"><i class="fas fa-arrow-right"></i></a></td>
+				</tr>
+		
+		</table>	  
+	  </div>
+<script src="jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
