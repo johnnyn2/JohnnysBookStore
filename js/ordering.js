@@ -18,11 +18,34 @@ $(document).ready(function () {
 		url: "php/loadProducts.php",
 		success: function(data){
 					var i = 0;
+					let rows = "";
 					$.each(data,function(key,val){
 						
 						allProducts[i] = new Product(val.isbn, val.bname, val.quantity, val.price);		
-						i++;		
+						i++;
+						if ((i-1) % 3 == 0) {
+							rows += "<div class='card-deck py-2'>";
+						}
+						const imgPath = "img/book-" + i + ".png";
+						const product_html = 
+							"<div class='card card-shadow'>" +
+								"<img class='card-img-top card-img mx-auto book-border' src='"+imgPath+"' alt='Card image cap' />" +
+									"<div class='card-body' style='display: flex; flex-direction:column;'>" +
+										"<h5 id='tit' class='card-title'>" + val.bname + "</h5><span class='badge badge-danger'>Hot</span>" +
+										"<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>" +
+										"<p class='price'>Price: $" + val.price + "</p>" +
+										"<div style='display: flex; flex-grow: 1; align-items: flex-end;'>" +
+										"<button style='flex-grow:1;' class='btn btn-success card-button' id='" + (i-1) + "' onclick='addToCart(this)'><span>Add to cart</span><span class='fas fa-cart-plus'></span></button>" +
+										"</div>" +
+									"</div>" +
+							  "</div>";
+						rows += product_html;
+						if (i % 3 == 0) {
+							rows += "</div>";
+						}
 					});
+					$('#products-container').append(rows);
+
 				}
 	});
 	
