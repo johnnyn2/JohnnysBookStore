@@ -16,18 +16,18 @@ $(function() {
         return false;
     });
 
-    function loadContent(href){
-        $mainContent
-                .find("#guts")
-                .fadeOut(200, function() {
-                    $mainContent.hide().load(href + " #guts", function() {
-                        $mainContent.fadeIn(200);
-                        $("nav a").removeClass("active");
-                        console.log(href);
-                        $("nav a[href$="+href+"]").addClass("active");
-                    });
-                });
-    }
+    // function loadContent(href){
+    //     $mainContent
+    //             .find("#guts")
+    //             .fadeOut(200, function() {
+    //                 $mainContent.hide().load(href + " #guts", function() {
+    //                     $mainContent.fadeIn(200);
+    //                     $("nav a").removeClass("active");
+    //                     console.log(href);
+    //                     $("nav a[href$="+href+"]").addClass("active");
+    //                 });
+    //             });
+    // }
     
     $(window).bind('popstate', function(){
        _link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only

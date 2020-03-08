@@ -15,59 +15,8 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script src="jquery-3.3.1.js"></script>
+<script type="text/JavaScript" src="js/confirm.js"></script>
 <script Language="JavaScript">
-var today;
-$(document).ready(function(){
-	$.ajax({
-		url: 'php/loadShoppingCart.php',
-		success: function(data){
-					var html ="", i=1;
-					$.each(data,function(key,val){
-						html += "<tr><td>"+i+"</td><td>"+val.bname+"</td><td>"+val.price+"</td><td>"+val.desiredQuantity+"</td></tr>";
-						i++;
-					});
-					$('#HeadRow').after(html);
-				}
-	});
-	$.ajax({
-		url: 'php/loadTotal.php',
-		success: function(data){
-					$('#total').html("$ "+data);
-				}
-	});
-	$.ajax({
-		url: 'php/loadDates.php',
-		success: function(data){
-					$('#preferdate').attr('min',data.min_date);
-					$('#preferdate').attr('max',data.max_date);
-				}
-	});
-	$('#order').click(function(event){
-		if($('#preferdate').val()==""){
-			alert("Please select a pick-up date !");
-			event.preventDefault();
-			return false;
-		}
-		if(confirm("Are you sure to submit the order?")){
-			today = $('#preferdate').val();
-			$.ajax({
-				type: 'POST',
-				url: 'php/insertToDB.php',
-				data: { preferDate:today },
-				complete: function(data){
-							alert("We have received your order. We will be in touch soon!");
-						}
-			});
-			location.replace("final.html");
-		}
-		
-	});
-	$('#cancel').click(function(){
-		if(confirm("Do you want to cancel the order?")){
-			location.replace("ordering.html");
-		}
-	});
-});
 </script>
 </head>
 <body>
@@ -153,7 +102,7 @@ $(document).ready(function(){
 		<div class="bg-dark d-flex justify-content-center">	
 			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-facebook-square"></span></button>
 			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-instagram"></span></button>
-			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-whatsapp"></span></button
+			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-whatsapp"></span></button>
 		</div>
 		<div  class="bg-dark d-flex justify-content-center">
 				

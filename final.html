@@ -15,32 +15,8 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script src="jquery-3.3.1.js"></script>
+<script type="text/JavaScript" src="js/final.js"></script>
 <script Language="JavaScript">
-$(document).ready(function(){
-	$.ajax({
-		url: 'php/loadShoppingCart.php',
-		success: function(data){
-					var html ="", i=1;
-					$.each(data,function(key,val){
-						html += "<tr><td>"+i+"</td><td>"+val.bname+"</td><td>"+val.price+"</td><td>"+val.desiredQuantity+"</td></tr>";
-						i++;
-					});
-					$('#HeadRow').after(html);
-				}
-	});
-	$.ajax({
-		url: 'php/loadTotal.php',
-		success: function(data){
-					$('#total').html("$ "+data);
-				}
-	});
-	$.ajax({
-		url: 'php/loadPreferDate.php',
-		success: function(data){
-					$('#preferdate').html(data);
-				}
-	});
-});
 </script>
 </head>
 <body>
@@ -125,7 +101,7 @@ $(document).ready(function(){
 		<div class="bg-dark d-flex justify-content-center">	
 			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-facebook-square"></span></button>
 			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-instagram"></span></button>
-			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-whatsapp"></span></button
+			<button class="btn btn-lg btn-light my-5 mx-3"><span class="fab fa-whatsapp"></span></button>
 		</div>
 		<div  class="bg-dark d-flex justify-content-center">
 				
